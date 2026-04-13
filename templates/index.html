@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block titulo %}Inicio{% endblock %}
+
+{% block contenido %}
+
+<section class="container pt-4">
+    <div class="row p-4 align-items-center">
+        <div class="col-12 col-md-6 bg-light py-3 px-2 rounded-4">
+            <h2>¡Bienvenido a nuestra app de nutrición!</h2>
+            <p>Tu espacio para aprender a comer mejor, cuidar tu salud y descubrir recetas fáciles y nutritivas.</p>
+            <p>Aquí encontrarás consejos, menús, información de alimentos y todo lo que necesitas para lograr un estilo
+                de vida más saludable.</p>
+            <p>Comienza ahora y dale a tu cuerpo lo que merece.</p>
+            <p><strong>¿Quienes somos?</strong> Somos una aplicación pensada para ayudar a las personas a mejorar su
+                alimentación de una manera práctica,
+                accesible y motivadora.</p>
+        </div>
+        <div class="col-12 col-md-6">
+            <img src="{{ url_for('static', filename='img/inicio.jpeg') }}" class="img-fluid rounded-4"
+                alt="Frutas en un plato con forma de corazón.">
+        </div>
+    </div>
+</section>
+
+<section class="container my-4">
+    <div class="row">
+        <div class="col-12 col-md-4">
+            <div class="card text-bg-light w-100 h-100">
+                <img src="{{ url_for('static', filename='img/alimentacion.png') }}" class="img-fluid"
+                    alt="Imagen que muestra las vitaminas de algunos alimentos.">
+                <div class="card-body">
+                    <h3>Alimentación</h3>
+                    <p class="card-text">Conoce que alimentos benefician tu salud y aprende a combinarlos para sentirte
+                        mejor cada día.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-4">
+            <div class="card text-bg-light w-100 h-100">
+                <img src="{{ url_for('static', filename='img/rutina.png') }}" class="img-fluid" alt="Reloj con comida nutritiva rodeandolo.">
+                <div class="card-body">
+                    <h3>Rutina</h3>
+                    <p class="card-text">Organiza tus comidas y descubre horarios que se adapten a tu estilo de vida.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-4">
+            <div class="card text-bg-light w-100 h-100">
+                <img src="{{ url_for('static', filename='img/fruit1.png') }}" class="img-fluid" alt="Plato con comidas saludables.">
+                <div class="card-body">
+                    <h3>Hábitos</h3>
+                    <p class="card-text">Adopta cambios sencillos y sostenibles que te ayuden a cuidar tu bienestar a
+                        largo plazo.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
