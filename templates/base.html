@@ -15,7 +15,6 @@
             <div class="col-12 justify-content-center bg-success-subtle mt-3 p-0">
                 <img src="{{ url_for('static', filename='img/ban.jpg') }}" alt="Encabezado" class="img-fluid">
             </div>
-
             <nav class="navbar navbar-expand-lg bg-success navbar-dark fixed-top">
                 <div class="container-fluid">
                     <a class="navbar-brand text-light d-flex align-items-center" href="#"> <img
@@ -33,10 +32,6 @@
                             <li class="nav-item">
                                 <a class="nav-link active text-light" aria-current="page"
                                     href="http://127.0.0.1:5000">Inicio</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-light" href="http://127.0.0.1:5000/educacion">Educación e
-                                    información</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle text-white" href="#" role="button"
@@ -57,6 +52,8 @@
                                             Macronutrientes</a></li>
                                     <li><a class="dropdown-item" href="http://127.0.0.1:5000/analizador">Analizador de
                                             Recetas o Platos</a></li>
+                                    <li><a class="dropdown-item" href="http://127.0.0.1:5000/add">Añadir documentos</a></li>
+                                    <li><a class="dropdown-item" href="http://127.0.0.1:5000/tareas">Tareas pendientes</a></li>
                                     {% endif %}
                                 </ul>
                             </li>

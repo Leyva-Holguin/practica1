@@ -1,9 +1,3 @@
-from pymongo import MongoClient
-from pymongo.errors import DuplicateKeyError, ConnectionFailure
-from bson.objectid import ObjectId
-from datetime import datetime, timedelta
-from typing import Optional, List, Dict
-import os 
 
 class GestorTareas:
     def __init__(self, uri: str = 'mongodb://localhost:27017/'):
