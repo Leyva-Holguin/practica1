@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block titulo %}Calculadora de Macronutrientes{% endblock %}
+
+{% block contenido %}
+
+<section class="container pt-4">
+    <div class="row mb-4 align-items-center">
+        <div class="col-12 col-md-6">
+            <div class="card text-bg-light mb-3">
+                <div class="card-header">Calculadora de Macronutrientes</div>
+                <div class="card-body">
+                    <h5 class="card-title">¿Qué son los Macronutrientes?</h5>
+                    <p>Los macronutrientes son proteínas, carbohidratros y grasas y cada uno aporta energía.</p>
+                    <p>Ingresa los datos para obtener los macronutrientes (Ingresa el numero solo)</p>
+                    <form method="POST" action="{{ url_for('cal_macronutrientes') }}">
+                        <div class="row mb-3">
+                            <div class="col-8 text-start">
+                                <input type="text" class="form-control" id="calorias_macro" name="calorias_macro"
+                                    required placeholder="Ingresa tus calorías diarias" value="">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-8 text-start">
+                                <select class="form-select" id="objetivo_macro" name="objetivo_macro" required>
+                                    <option value="" selected disabled>Selecciona tu Objetivo</option>
+                                    <option value="perder" {{ 'selected' if datos_usuario.objetivo=='perder' else '' }}>
+                                        Perder Peso</option>
+                                    <option value="mantener" {{ 'selected' if datos_usuario.objetivo=='mantener' else ''
+                                        }}>Mantener Peso</option>
+                                    <option value="ganar" {{ 'selected' if datos_usuario.objetivo=='ganar' else '' }}>
+                                        Ganar Masa Muscular</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-8 text-start">
+                                <select class="form-select" id="actividad_macro" name="actividad_macro" required>
+                                    <option value="" selected disabled>Nivel de Actividad</option>
+                                    <option value="sedentario" {{ 'selected' if
+                                        datos_usuario.nivel_actividad=='sedentario' else '' }}>Sedentario</option>
+                                    <option value="ligero" {{ 'selected' if datos_usuario.nivel_actividad=='ligero'
+                                        else '' }}>Ligero</option>
+                                    <option value="moderado" {{ 'selected' if datos_usuario.nivel_actividad=='moderado'
+                                        else '' }}>Moderado</option>
+                                    <option value="activo" {{ 'selected' if datos_usuario.nivel_actividad=='activo'
+                                        else '' }}>Activo</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-warning">Calcular Macronutrientes</button>
+                    </form>
+                    {% if resultado_macronutrientes %}
+                    <div class="alert alert-info mt-3">
+                        {{ resultado_macronutrientes|safe }}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+            <img src="{{ url_for('static', filename='img/macro.jpg') }}" class="img-fluid rounded-4"
+                alt="Macronutrientes, pan, carne, grasas saludables ejemplos.">
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

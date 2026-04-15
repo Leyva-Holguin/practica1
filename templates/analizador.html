@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block titulo %}Analizador de Recetas o Platos{% endblock %}
+
+{% block contenido %}
+
+<section class="container pt-4">
+    <div class="row mb-4 justify-content-center text-center">
+        <div class="col-8 text-center">
+            <div class="card text-bg-light mb-3">
+                <div class="card-header">Analizador de Recetas o Platos</div>
+                <div class="card-body">
+                    <h5 class="card-title">¿Qué puedes hacer aquí?</h5>
+                    <p>Analiza el valor nutricional de tus recetas o encuentra recetas por ingrediente (en inglés).</p>
+                    <form method="POST" action="{{ url_for('analizar_receta') }}" class="mb-4">
+                        <div class="row mb-3">
+                            <div class="col-12 text-start">
+                                <label for="titulo_receta" class="form-label">Título de la Receta:</label>
+                                <input type="text" class="form-control" id="titulo_receta" name="titulo_receta"
+                                    placeholder="Ej: Chicken Rice Bowl" required>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-12 text-start">
+                                <label for="texto_receta" class="form-label">Ingredientes:</label>
+                                <textarea class="form-control" id="texto_receta" name="texto_receta" rows="3"
+                                    placeholder="Ej: 2 eggs, 1 cup rice, 200g chicken, 1 onion..." required></textarea>
+                                <div class="form-text">Ingresa los ingredientes en <strong>inglés</strong> para mejor
+                                    resultado.<br> Ejemplo: "2 eggs, 1 cup rice, 200g chicken, 1 onion"</div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-warning">Analizar Receta</button>
+                    </form>
+                    {% if resultado_receta %}
+                    <div class="alert alert-info mt-3">
+                        {{ resultado_receta|safe }}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,455 @@
+{% extends "base.html" %}
+
+{% block titulo %}Educación e información{% endblock %}
+
+{% block contenido %}
+
+<section class="container pt-4">
+    <div class="row align-items-center">
+        <div class="col-12 col-md-7">
+            <div class="card text-bg-light mb-3">
+                <div class="card-header">¿Cómo leer las etiquetas nutricionales?</div>
+                <div class="card-body">
+                    <h5 class="card-title">Importancia</h5>
+                    <p class="card-text">Las etiquetas nutricionales son una guía que te ayuda a saber qué estás
+                        comiendo.</p>
+                    <p>En México, los alimentos y bebidas preenvasados deben mostrar información sobre su contenido.</p>
+                    <p>Aprender a leerlas te permitirá comparar productos, cuidar tu salud y elegir mejor lo que
+                        compras.</p>
+                    <p>Desde 2020, México aplica la NOM-051-SCFI/SSA1-2010, una norma que exige que los envases tengan
+                        <strong>sellos de
+                            advertencia</strong> en forma de octágonos negros si el producto excede ciertos limites de:
+                    </p>
+                    <ul>
+                        <li>Azúcares añadidos</li>
+                        <li>Grasas saturadas</li>
+                        <li>Grasa trans</li>
+                        <li>Sodio</li>
+                        <li>Calorías</li>
+                    </ul>
+                    <p>También pueden contener leyendas como "Contiene educolorantes, no recomendable en niños" o
+                        "Contiene cafeína evitar en niños".</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-5">
+            <img src="{{ url_for('static', filename='img/sellos33.jpeg') }}" class="img-fluid rounded-4"
+                alt="Sellos de advertencia en envases.">
+        </div>
+    </div>
+
+    <div class="row align-items-center">
+        <div class="col-12 col-md-7">
+            <div class="card text-bg-light mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Cómo leer una etiqueta paso a paso</h5>
+                    <p class="card-text"><strong>1. Tamaño de la porción</strong></p>
+                    <p>Observa primero <strong>el tamaño de la porción</strong>. Toda la información (calorías, grasas,
+                        azúcares, etc) se calcula por porción, no por envase.
+                        Si el producto dice "2 porciones por envase" debes multiplicar los valores por 2.</p>
+                    <p><strong>2. Calorias o valor energético</strong></p>
+                    <p>Indican cuánta energía aporta una porción.
+                        Esto te ayuda a saber si ese alimento encaja con tus necesidades diarias.
+                        Las necesidades calóricas dependen del sexo, edad, altura, peso y actividad fisica pero se
+                        estiman las siguientes cifras:</p>
+                    <p>Mujeres: Entre 1, 600 y 2, 000 calorias al día.</p>
+                    <p>Hombres: Entre 2, 000 y 2, 400 calorias al día.</p>
+                    <p><strong>3. Nutrimentos que debes limitar</strong></p>
+                    <p>Son los que pueden afectar tu salud si se consumen en exceso:</p>
+                    <ul>
+                        <li>Azúcares añadidos: favorecen el aumento de peso y caries.</li>
+                        <li>Grasas saturadas y trans: aumentan el riesgo cardiovascular.</li>
+                        <li>Sodio: puede elevar la presión arterial.</li>
+                    </ul>
+                    <p>Si el producto tiene sellos de “EXCESO EN…”, significa que <strong>supera los límites
+                            recomendados</strong>.
+                        Cuantos más sellos tenga, menos saludable es para el consumo frecuente.</p>
+                    <p><strong>4. Nutrimentos que conviene promover</strong></p>
+                    <p>Busca alimentos que aporten:</p>
+                    <ul>
+                        <li>Fibra dietética: mejora la digestión.</li>
+                        <li>Proteína: esencial para músculos y tejidos.</li>
+                        <li>Vitaminas y minerales: Fortalecen tu organismo.</li>
+                    </ul>
+                    <p><strong>5. Lista de ingredientes</strong></p>
+                    <p>Se ordenan de mayor a menor cantidad.
+                        Si los primeros son azúcar, jarabes, harinas refinadas o grasas, el producto es altamente
+                        procesado.
+                        Mientras menos ingredientes raros o químicos tenga, mejor opción es.</p>
+                    <p>Consejos:</p>
+                    <ol>
+                        <li>Compara productos similares y elige el que tenga menos sellos y menos ingredientes
+                            procesados.</li>
+                        <li> No te dejes engañar por frases como “natural” o “light”, lo importante está en la tabla y
+                            los sellos.</li>
+                        <li> Considera tu porción real, no la del envase.</li>
+                        <li>Prefiere consumir alimentos frescos o mínimamente procesados: frutas, verduras, legumbres,
+                            etc.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-5">
+            <img src="{{ url_for('static', filename='img/etq1.jpg') }}" class="img-fluid rounded-4 mb-2"
+                alt="Etiqueta nutricional.">
+
+            <img src="{{ url_for('static', filename='img/ejem1.jpg') }}" class="img-fluid rounded-4"
+                alt="Ejemplo de donde se encuentra una etiqueta nutricional.">
+        </div>
+
+    </div>
+</section>
+
+<section class="container">
+    <div class="row pt-4">
+        <div class="col-12">
+            <div class="card text-bg-light mb-3">
+                <div class="card-header">Mitos y verdades sobre las dietas de moda</div>
+                <div class="card-body">
+                    <h5 class="card-title">¿Por qué hay tantas dietas de moda?</h5>
+                    <p class="card-text">Todos los años aparecen nuevas dietas que prometen resultados rápidos como
+                        "perder peso" o "desintoxicar el cuerpo". Sin embargo muchas de ellas carecen de respaldo
+                        cientifico y pueden poner en riesgo la salud.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card text-bg-light mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Mitos más comunes</h5>
+                    <p class="card-text">
+                    <p><strong>“Entre menos comas, más rápido bajarás de peso.”</strong></p>
+                    <p>Reducir tanto las calorías puede provocar
+                        fatiga, pérdida de masa muscular y un efecto rebote.
+                        El cuerpo necesita energía suficiente para funcionar, lo ideal es un déficit moderado y
+                        controlado con apoyo profesional.</p>
+                    <p><strong>“Las dietas detox eliminan toxinas del cuerpo.”</strong></p>
+                    <p>El cuerpo ya tiene órganos que lo desintoxican naturalmente (el hígado, los riñones y los
+                        pulmones).
+                        No existen jugos ni tés que limpien el organismo.
+                        Lo mejor es mantener una alimentación balanceada y beber suficiente agua</p>
+                    <p><strong>“Los carbohidratos engordan.”</strong></p>
+                    <p>Los carbohidratos son una fuente <strong>principal de energía</strong>.
+                        El problema en realidad está en el exceso y en los tipos: los <strong>refinados y
+                            azucarados</strong> sí deben limitarse,
+                        pero los <strong>integrales, frutas y legumbres</strong> son fundamentales para el cuerpo.</p>
+                    <p><strong>“Comer de noche siempre engorda.”</strong></p>
+                    <p>Lo que importa no es la hora, sino la cantidad total y la calidad de lo que comes durante el día.
+                        si lo ultimo que comiste fue algo equilibrado y ligero, no pasa nada por cenar tarde.</p>
+                    <p><strong>“Las dietas sin gluten o sin lactosa son más saludables.”</strong></p>
+                    <p>Solo si tienes una condición médica diagnosticada (como enfermedad celíaca o intolerancia a la
+                        lactosa).
+                        De lo contrario, eliminar estos grupos sin razón podria causar <strong>deficiencias
+                            nutricionales</strong> o
+                        limitar innecesariamente tu alimentación.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card text-bg-light mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Verdades importantes </h5>
+                    <p class="card-text">
+                    <p><strong>"La mejor dieta es la que puedes mantener."</strong></p>
+                    <p>No sirve una dieta que solo funcione dos semanas.
+                        Un buen plan se adapta a tu ritmo, gustos y necesidades a largo plazo.</p>
+                    <p><strong>"Comer variado es más importante que comer poco."</strong></p>
+                    <p>Incluir todos los grupos de alimentos (carbohidratos, proteínas y grasas saludables) garantiza
+                        equilibrio y energía.</p>
+                    <p><strong>"No hay alimentos buenos ni malos."</strong></p>
+                    <p>Todo depende de la frecuencia, cantidad y contexto.
+                        comer un dulce de vez en cuando no te hará daño, pero el exceso sí puede hacerlo.</p>
+                    <p><strong>"La hidratación y la actividad física cuentan."</strong></p>
+                    <p>Ninguna dieta funciona si no se acompaña de agua suficiente, sueño adecuado y movimiento diario.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="card text-bg-light mb-3">
+                <div class="card-header">Macronutrientes y su función</div>
+                <div class="card-body">
+                    <p class="card-text">Los macronutrientes son los componentes principales de los alimentos que el
+                        cuerpo necesita en grandes cantidades para obtener energía y mantener sus funciones vitales.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-md-3">
+            <div class="card text-bg-light  w-100 h-100">
+                <img src="{{ url_for('static', filename='img/carbon.avif') }}" class="img-fluid" alt="Alimentos que contienen carbohidratos.">
+                <div class="card-body">
+                    <h3>Carbohidratos</h3>
+                    <p class="card-text">Función: Son la principal fuente de energía del cuerpo. El cerebro, los
+                        músculos y otros órganos dependen de ellos para funcionar correctamente.</p>
+                    <p>Fuentes saludables: Frutas, verduras, legumbres, cereales integrales, avena, maíz y arroz
+                        integral.</p>
+                    <p>Recomendación: Evitar el exceso de azúcares añadidos y productos ultraprocesados. Preferir
+                        carbohidratos complejos con fibra, que aportan energía de forma sostenida.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-3">
+            <div class="card text-bg-light w-100 h-100">
+                <img src="{{ url_for('static', filename='img/pro.webp') }}" class="img-fluid" alt="Alimentos que son ricos en proteínas.">
+                <div class="card-body">
+                    <h3>Proteínas</h3>
+                    <p class="card-text">Función: Son esenciales para formar y reparar tejidos, músculos, piel, uñas y
+                        hormonas. También ayudan al sistema inmunológico.</p>
+                    <p>Fuentes saludables: Carnes magras, pescado, huevo, legumbres (frijoles, lentejas), tofu, nueces
+                        y semillas.</p>
+                    <p>Recomendación: Combinar fuentes animales y vegetales para obtener todos los aminoácidos
+                        esenciales.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-3">
+            <div class="card text-bg-light w-100 h-100">
+                <img src="{{ url_for('static', filename='img/gras.jpeg') }}" class="img-fluid" alt="Variedad de comida que contiene grasas saludables.">
+                <div class="card-body">
+                    <h3>Grasas saludables</h3>
+                    <p class="card-text">Función: Aportan energía, ayudan a absorber vitaminas (A, D, E y K) y
+                        participan en la producción de hormonas.</p>
+                    <p>Fuentes saludables: Aguacate, aceite de oliva, semillas, nueces, pescado azul (como el salmón o
+                        la sardina).</p>
+                    <p>Recomendación: Limitar las grasas saturadas y eliminar las grasas trans (presentes en frituras y
+                        productos industrializados).</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-3">
+            <div class="card text-bg-light w-100 h-100">
+                <img src="{{ url_for('static', filename='img/balance.webp') }}" class="img-fluid"
+                    alt="Una persona tomando apuntes sobre el balance energetico.">
+                <div class="card-body">
+                    <h3>Balance energético</h3>
+                    <p class="card-text">El equilibrio entre los macronutrientes es fundamental.
+                        Una alimentación balanceada, según la Guía Alimentaria Mexicana, debe
+                        incluir:</p>
+                    <ul>
+                        <li>50% a 60% de calorías provenientes de carbohidratos.</li>
+                        <li>15% a 20% de proteínas.</li>
+                        <li>25% a 35% de grasas saludables.</li>
+                    </ul>
+                    <p>Estos valores pueden variar según la edad, actividad física y estado de salud de cada persona.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container mt-3">
+    <div class="row">
+        <div class="col-12">
+            <div class="card text-bg-light mb-3">
+                <div class="card-header">La importancia de la hidratación, la fibra y otros componentes esenciales</div>
+                <div class="card-body">
+                    <p class="card-text">Existen otros factores clave que contribuyen al bienestar: la
+                        hidratación, el consumo suficiente de fibra y los micronutrientes
+                        (vitaminas y minerales).</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-12 col-md-4">
+            <div class="card text-bg-light w-100 h-100">
+                <div class="card-body">
+                    <h3>Hidratación</h3>
+                    <p class="card-text">Función: El agua regula la temperatura, transporta nutrientes, elimina
+                        desechos y
+                        mantiene las articulaciones lubricadas.</p>
+                    <p>Recomendación: Se aconseja consumir entre 6 y 8 vasos de agua al día (1.5 a 2 litros),
+                        dependiendo de la edad, clima y nivel de actividad física.</p>
+                    <p>Evitar: Refrescos, bebidas energéticas y jugos industrializados con alto contenido de azúcar,
+                        ya que pueden provocar deshidratación o exceso calórico.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-4">
+            <div class="card text-bg-light w-100 h-100">
+                <div class="card-body">
+                    <h3>Fibra dietética</h3>
+                    <p class="card-text">Función: Mejora la digestión, previene el estreñimiento y ayuda a controlar
+                        los niveles de glucosa y colesterol en sangre.</p>
+                    <p>Fuentes: Frutas con cáscara, verduras, legumbres, avena, pan integral, semillas y frutos
+                        secos.</p>
+                    <p>Recomendación: Consumir al menos 25 a 30 gramos de fibra diarios.</p>
+                    <p>Dato: La fibra debe de ir acompañada de suficiente agua para evitar malestar intestinal.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-4">
+            <div class="card text-bg-light w-100 h-100">
+                <div class="card-body">
+                    <h3>Vitaminas y minerales</h3>
+                    <p class="card-text">Función: Son esenciales para el funcionamiento del sistema inmunológico, la
+                        formación de huesos, la producción de energía y la prevención de enfermedades.</p>
+                    <p>Fuentes:</p>
+                    <ul>
+                        <li>Vitamina A: zanahoria, calabaza, mango.</li>
+                        <li>Vitamina C: cítricos, guayaba, pimientos.</li>
+                        <li>Hierro: carnes magras, espinaca, lentejas.</li>
+                        <li>Calcio: leche, yogur, tofu, almendras.</li>
+                        <li>Zinc: legumbres, nueces, semillas..</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card text-bg-light">
+                <div class="card-body">
+                    <h5 class="card-title">Otros elementos</h5>
+                    <p class="card-text"><strong>Sueño adecuado: </strong>Favorece la regulación hormonal y el
+                        metabolismo.</p>
+                    <p><strong>Actividad física: </strong>Mejora la absorción de nutrientes y la salud
+                        cardiovascular.</p>
+                    <p><strong>Moderación: </strong>Los alimentos saludables también deben de consumirse en
+                        cantidades adecuadas.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>    
+            
+<section class="container mt-5">
+    {% if session.get('logueado') %}  
+    <div class="row">
+        <div class="col-12">
+            <div class="card text-bg-light mb-3">
+                <div class="card-header">Recursos Descargables</div>
+                <div class="card-body">
+                    <p class="card-text">Complementa tu nutrición con estos recursos prácticos que puedes descargar y
+                        usar cuando los necesites.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-6 col-lg-4 mb-4">
+            <div class="card text-bg-light h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Guía de Porciones Saludables</h5>
+                    <p class="card-text">Aprende a medir tus porciones usando referencias prácticas de tu mano.</p>
+                </div>
+                <div class="card-footer">
+                    <a href="{{ url_for('static', filename='descargas/guia-alimentos.pdf') }}"
+                        class="btn btn-warning w-100" download>
+                        Descargar PDF
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-12 col-md-6 col-lg-4 mb-4">
+            <div class="card text-bg-light h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Lista de Compras Saludables</h5>
+                    <p class="card-text">Lista organizada por secciones del supermercado para compras nutritivas.</p>
+                </div>
+                <div class="card-footer">
+                    <a href="{{ url_for('static', filename='descargas/cartera-alimentacion.pdf') }}"
+                        class="btn btn-danger w-100" download>
+                        Descargar PDF
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4 mb-4">
+            <div class="card text-bg-light h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Guía de Hidratación Diaria</h5>
+                    <p class="card-text">Consejos prácticos y registro para mantener una hidratación adecuada.</p>
+                </div>
+                <div class="card-footer">
+                    <a href="{{ url_for('static', filename='descargas/guia-hidra.pdf') }}" class="btn btn-primary w-100"
+                        download>
+                        Descargar PDF
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4 mb-4">
+            <div class="card text-bg-light h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Recetario Básico Saludable</h5>
+                    <p class="card-text">Recetas fáciles y rápidas para comidas nutritivas.</p>
+                </div>
+                <div class="card-footer">
+                    <a href="{{ url_for('static', filename='descargas/recetario.pdf') }}" class="btn btn-warning w-100"
+                        download>
+                        Descargar PDF
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4 mb-4">
+            <div class="card text-bg-light h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Ejercicios basicos para Mujeres</h5>
+                    <p class="card-text">Rutina de ejercicio para las Mujeres.</p>
+                </div>
+                <div class="card-footer">
+                    <a href="{{ url_for('static', filename='descargas/MUJER.pdf') }}" class="btn btn-danger w-100"
+                        download>
+                        Descargar PDF
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4 mb-4">
+            <div class="card text-bg-light h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Ejercicios basicos para Hombres</h5>
+                    <p class="card-text">Rutina de ejercicio para las Hombres.</p>
+                </div>
+                <div class="card-footer">
+                    <a href="{{ url_for('static', filename='descargas/HOMBRE.pdf') }}" class="btn btn-primary w-100"
+                        download>
+                        Descargar PDF
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="row">
+        <div class="col-12">
+            <div class="card text-bg-light mb-3">
+                <div class="card-header">Recursos Descargables</div>
+                <div class="card-body">
+                    <p class="card-text">Inicia sesion para poder acceder a esta sección.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</section>
+ 
+
+{% endblock %}
