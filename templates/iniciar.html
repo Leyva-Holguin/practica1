@@ -28,13 +28,10 @@
                 {% else %}
                     <form method="post" action="{{ url_for('validar') }}">
                         <div class="mb-3">
-                            <input type="email" class="form-control" name="correo" 
-                                   placeholder="Correo electrónico" required
-                                   value="{{ request.form.get('correo', '') }}">
+                            <input type="email" class="form-control" name="correo" placeholder="Correo electrónico" required value="{{ request.form.get('correo', '') }}">
                         </div>
                         <div class="mb-3">
-                            <input type="password" class="form-control" name="password" 
-                                   placeholder="Contraseña" required>
+                            <input type="password" class="form-control" name="password" placeholder="Contraseña" required>
                         </div>
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
@@ -42,6 +39,9 @@
                     </form>
                     <div class="text-center mt-3">
                         <p>¿No tienes cuenta? <a href="{{ url_for('registro') }}">Regístrate aquí</a></p>
+                    </div>
+                    <div class="text-center mt-3">
+                        <p>¿Olvidaste tu contraseña? <a href="{{ url_for('recuperar') }}">Recuperar contraseña</a></p>
                     </div>
                 {% endif %}
             </div>

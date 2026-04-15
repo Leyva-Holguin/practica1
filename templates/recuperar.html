@@ -1,14 +1,12 @@
 {% extends "base.html" %}
-
-{% block titulo %}Tareas pendientes{% endblock %}
-
+{% block titulo %}Recuperar contraseña{% endblock %}
 {% block contenido %}
+
 <div class="container pt-5">
     <div class="row justify-content-center">
         <div class="col-md-9">
             <div class="card text-bg-light p-3 p-md-4 shadow-sm">
-                <h2 class="text-center">Crea tu perfil</h2>
-                <p class="text-center text-muted">Es rápido y fácil.</p>
+                <h2 class="text-center">Recupera tu contraseña</h2>
                 {% with messages = get_flashed_messages(with_categories=True) %}
                 {% if messages %}
                 {% for category, message in messages %}
@@ -55,14 +53,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 text-start">
-                            <label for="genero" class="form-label fw-medium">Género</label>
-                            <select class="form-select" id="genero" name="genero" required>
-                                <option value="" selected disabled>Selecciona tu Género</option>
-                                <option value="hombre">Hombre</option>
-                                <option value="mujer">Mujer</option>
-                            </select>
-                        </div>
                         <div class="row mb-3">
                             <div class="col text-start">
                                 <label for="peso" class="form-label fw-medium">Peso</label>
@@ -73,22 +63,6 @@
                                 <label for="altura" class="form-label fw-medium">Altura</label>
                                 <input type="number" class="form-control" id="altura" name="altura" required
                                     placeholder="Ej: 170" value="{{ request.form.get('altura', '')}}">
-                            </div>
-                        </div>
-                        <div class="row mb-3 text-start">
-                            <div class="col-12">
-                                <label for="objetivo" class="form-label fw-medium">¿Cuál es tu objetivo
-                                    principal?</label>
-                                <select class="form-select" id="objetivo" name="objetivo" required>
-                                    <option value="" selected disabled>Selecciona tu objetivo</option>
-                                    <option value="bajar_peso">Bajar de peso</option>
-                                    <option value="aumentar_musculo">Aumentar masa muscular</option>
-                                    <option value="mantener_peso">Mantener peso</option>
-                                    <option value="mejorar_digestion">Mejorar digestión</option>
-                                    <option value="controlar_diabetes">Controlar diabetes</option>
-                                    <option value="controlar_hipertension">Controlar hipertensión</option>
-                                    <option value="mejorar_salud_general">Mejorar salud general</option>
-                                </select>
                             </div>
                         </div>
                         <div class="row mb-3">
