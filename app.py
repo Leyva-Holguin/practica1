@@ -15,12 +15,6 @@ USUARIOS_REGISTRADOS = {
     'daniel@correo.com':{
         'password': "daniel",
         'nombre': "daniel",
-        'dia': 10,
-        'mes': 10,
-        'year': 2009,
-        'genero': "hombre",
-        'peso': 60,
-        'altura': 165,
         'correo': "daniel@correo.com",
         'edad': 16,
     }
@@ -101,7 +95,7 @@ def registrar():
 @app.route("/iniciar")
 def iniciar():
     if session.get('logueado'):
-        return render_template('index.html')
+        return render_template('iniciar.html')
     return render_template('iniciar.html')
 
 @app.route('/validaLogin', methods=['GET','POST'])
@@ -134,7 +128,7 @@ def validar():
 def logout():
     session.clear()
     flash('Has cerrado sesión correctamente', 'info')
-    return redirect(url_for('index'))
+    return redirect(url_for('iniciar'))
 
 
 # Ejemplo de uso
