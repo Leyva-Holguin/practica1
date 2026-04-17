@@ -50,19 +50,10 @@ def registrar():
         dia = request.form['dia']
         mes = request.form['mes']
         year = request.form['year']
-        genero = request.form['genero']
-        peso = request.form['peso']
-        altura = request.form['altura']
-        objetivo = request.form['objetivo']
-        alergias = request.form.get('alergias', 'Nulo')
-        intolerancias = request.form.get('intolerancias', 'Nulo')
-        nivel_actividad = request.form['nivel_actividad']
-        alimentos_no_gusta = request.form.get('alimentos_no_gusta', 'Nulo')
         correo = request.form['correo']
         password = request.form['password']
-        dieta = request.form.get('dietas', 'Nulo')
         confirmPassword = request.form.get("confirmPassword")
-        edad = 2025 - int(year)
+        edad = 2026 - int(year)
         if password != confirmPassword:
             error = "Las contraseñas no coinciden"
         elif correo in USUARIOS_REGISTRADOS:
@@ -77,21 +68,12 @@ def registrar():
                 'dia': dia,
                 'mes': mes,
                 'year': year,
-                'genero': genero,
-                'peso': peso,
-                'altura': altura,
-                'objetivo': objetivo,
-                'nivel_actividad': nivel_actividad,
                 'correo': correo,
                 'edad': edad,
-                'alergias': alergias,
-                'intolerancias': intolerancias, 
-                'alimentos_no_gusta': alimentos_no_gusta, 
-                'dieta': dieta
             }
             flash(f"Registro exitoso: {nombre}. Ahora puedes iniciar sesión.", 'success')
             return redirect(url_for('iniciar'))
-        
+
 @app.route("/iniciar")
 def iniciar():
     if session.get('logueado'):
@@ -130,6 +112,27 @@ def logout():
     flash('Has cerrado sesión correctamente', 'info')
     return redirect(url_for('iniciar'))
 
+@app.route('/agregar_tarea', methods=['POST'])
+def agregar_tarea():
+    titulo = request.form['titulo']
+    # Guardar en MongoDB proximamante
+    flash('Tarea añadida correctamente', 'success')
+    return redirect(url_for('tareas'))
+
+@app.route('/editar_tarea/<tarea_id>', methods=['POST'])
+def editar_tarea(tarea_id):
+    titulo = request.form['titulo']
+    estado = request.form['estado']
+    fecha_fin = request.form.get('fecha_fin')
+    # Actualizar en MongoDB proximamente
+    flash('Tarea actualizada correctamente', 'success')
+    return redirect(url_for('tareas'))
+
+@app.route('/eliminar_tarea/<tarea_id>')
+def eliminar_tarea(tarea_id):
+    # Eliminar de MongoDB proximamante
+    flash('Tarea eliminada correctamente', 'success')
+    return redirect(url_for('tareas'))
 
 # Ejemplo de uso
 def ejemplo_uso():
