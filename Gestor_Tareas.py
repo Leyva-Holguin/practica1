@@ -55,13 +55,14 @@ class GestorTareas:
             print(f"Error al obtener usuario: {e}")
             return None
 
-    def obtener_usuario2(self, correo: str, password: str) -> Optional[Dict]:
+    #def obtener_usuario2(self, correo: str, passworsd: str) -> Optional[Dict]:
         """Obtener usuario por ID"""
         try:
-            usuario = self.usuarios.find_one({"correo": ObjectId(correo)})
+            correo = self.usuarios.find_one({"correo": ObjectId(correo)})
             if correo:
-                
-                usuario['_id'] = str(usuario['_id'])
+                #verificar el password tecleado por el usuario con la base de datos
+                #regresar los datos del usuario
+                #usuario['_id'] = str(usuario['_id'])
             return usuario
         except Exception as e:
             print(f"Error al obtener usuario: {e}")

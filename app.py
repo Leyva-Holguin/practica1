@@ -6,6 +6,7 @@ from bson.objectid import ObjectId
 from datetime import datetime, timedelta
 from typing import Optional, List, Dict
 import os 
+import Gestor_Tareas
 
 API_KEY = "f464ff8b2ff24730ab822bdd2da02bbd"
 API_BASE = "https://api.spoonacular.com"
@@ -19,11 +20,23 @@ USUARIOS_REGISTRADOS = {
         'edad': 16,
     }
 }
-app.config['SECRET_KEY'] = 'Ladrillos_que_ruedan'
+app.config['SECRET_KEY'] = 'Ladrillos_que_ruedan_nueces_que_vuelan'
 
 @app.route('/')
 def index():
     return render_template('iniciar.html')
+
+#evento click del inicio de sesion
+@app.route('/iniciar', methods=['GET','POST'])
+def index():
+    gestor = Gestor_Tareas()
+    if gestor:
+        if gestor.obtener_usuario2("daniel@correo.com", "daniel"):
+            return render_template("iniciar.html")
+        else:
+            1
+    else:
+        return render_template('errorConeccion.html')
 
 @app.route('/registro')
 def registro():
@@ -156,7 +169,7 @@ def eliminar_tarea(tarea_id):
 # Ejemplo de uso
 def ejemplo_uso():
     # Inicializar gestor
-    gestor = GestorTareas()
+    gestor = Gestor_Tareas()
     
     # Crear usuario
     usuario_id = gestor.crear_usuario("Ana García", "ana@email.com")
