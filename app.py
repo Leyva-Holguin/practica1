@@ -37,6 +37,25 @@ def tareas():
 def recuperar():
     return render_template('recuperar.html')
 
+#@app.route('/validaCorreo', methods=['GET','POST'])
+#def C():
+    if request.method == "POST":
+        correo = request.form.get("correo", '').strip()
+        if not correo:
+            flash('Por favor ingresa el email', 'error')
+            return render_template('recuperar.html')
+        elif correo in USUARIOS_REGISTRADOS:
+            usuario = USUARIOS_REGISTRADOS[correo]
+            if usuario['correo'] == correo:
+                session['logueado'] = True
+                session['usuario_correo'] = correo
+                flash(f'¡Bienvenido {usuario["nombre"]}!', 'success')
+                return redirect(url_for('recuperar'))
+        else:
+            flash('Usuario no encontrado', 'error')
+        return render_template('iniciar.html')
+    return redirect(url_for('iniciar'))
+
 @app.route('/add')
 def add():
     return render_template('add.html')

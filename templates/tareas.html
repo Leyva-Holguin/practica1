@@ -30,18 +30,13 @@
                             </div>
                             <div class="col text-start">
                                 <label for="apellido" class="form-label fw-medium">Apellido</label>
-                                <input type="text" class="form-control" id="apellido" name="apellido"
-                                    placeholder="Ej: Pérez" required minlength="2" maxlength="20"
-                                    value="{{ request.form.get('apellido', '')}}">
+                                <input type="text" class="form-control" id="apellido" name="apellido"placeholder="Ej: Pérez" required minlength="2" maxlength="20"value="{{ request.form.get('apellido', '')}}">
                             </div>
                         </div>
                         <div class="mb-4 text-start">
                             <label class="form-label fw-medium">Fecha de nacimiento</label>
                             <div class="row">
-                                <div class="col-3">
-                                    <label for="dia" class="form-label small">Día</label>
-                                    <input type="number" class="form-control" id="dia" name="dia" min="1" max="31"
-                                        placeholder="DD" value="{{ request.form.get('dia', '')}}">
+                                <div class="col-3"><label for="dia" class="form-label small">Día</label><input type="number" class="form-control" id="dia" name="dia" min="1" max="31"placeholder="DD" value="{{ request.form.get('dia', '')}}">
                                 </div>
                                 <div class="col-4">
                                     <label for="mes" class="form-label small">Mes</label>
@@ -70,9 +65,7 @@
                                     placeholder="Ej: 70" value="{{ request.form.get('peso', '')}}">
                             </div>
                             <div class="col text-start">
-                                <label for="altura" class="form-label fw-medium">Altura</label>
-                                <input type="number" class="form-control" id="altura" name="altura" required
-                                    placeholder="Ej: 170" value="{{ request.form.get('altura', '')}}">
+                                <label for="altura" class="form-label fw-medium">Altura</label><input type="number" class="form-control" id="altura" name="altura" required placeholder="Ej: 170" value="{{ request.form.get('altura', '')}}">
                             </div>
                         </div>
                         <div class="row mb-3 text-start">
