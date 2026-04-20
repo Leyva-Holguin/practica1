@@ -1,7 +1,6 @@
-## Integrantes:
 Nombre: Daniel Ivan leyva Holguin
 
-Grado y grupo: 3-D
+Grado y grupo: 4-D
 
 Correo: 24308060610008@cetis61.edu.mx
 
