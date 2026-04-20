@@ -18,7 +18,7 @@
                     {% if session.get('logueado') %}
                     <div class="collapse navbar-collapse" id="navbarNavDropdown">
                         <ul class="navbar-nav ms-auto">
-                            <li class="nav-item"><a class="nav-link text-light" href="{{ url_for('tareas') }}"><i class="bi bi-list-check me-1"></i>Mis Tareas </a></li>
+                            <li class="nav-item"><a class="nav-link text-light" href="{{ url_for('add') }}"><i class="bi bi-list-check me-1"></i>Mis Tareas </a></li>
                             <li class="nav-item dropdown"><a class="nav-link dropdown-toggle text-light" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-circle me-1"></i>{{ session.get('usuario', 'Usuario') }}</a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                                     <li><a class="dropdown-item text-danger" href="{{ url_for('logout') }}"><i class="bi bi-box-arrow-right me-2"></i>Cerrar Sesión</a></li>
