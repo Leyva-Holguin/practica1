@@ -26,9 +26,32 @@ app.config['SECRET_KEY'] = 'Ladrillos_que_ruedan_nueces_que_vuelan'
 def index():
     return render_template('iniciar.html')
 
+@app.route('/validaLogin', methods=['GET','POST'])
+def validar():
+    if request.method == "POST":
+        correo = request.form.get("correo", '').strip()
+        password = request.form.get("password", '')
+        if not correo or not password:
+            flash('Por favor ingresa email y contraseña', 'error')
+            return render_template('iniciar.html')
+        elif correo in USUARIOS_REGISTRADOS:
+            usuario = USUARIOS_REGISTRADOS[correo]
+            if usuario['password'] == password:
+                session['logueado'] = True
+                session['usuario'] = usuario['nombre']
+                session['usuario_correo'] = correo
+                flash(f'¡Bienvenido {usuario["nombre"]}!', 'success')
+                return redirect(url_for('index'))
+            else:
+                flash('Contraseña incorrecta', 'error')
+        else:
+            flash('Usuario no encontrado', 'error')
+        return render_template('iniciar.html')
+    return redirect(url_for('iniciar'))
+
 #evento click del inicio de sesion
-@app.route('/iniciar', methods=['GET','POST'])
-def index():
+#@app.route('/evento', methods=['GET','POST'])
+#def index():
     gestor = Gestor_Tareas()
     if gestor:
         if gestor.obtener_usuario2("daniel@correo.com", "daniel"):
@@ -36,15 +59,11 @@ def index():
         else:
             1
     else:
-        return render_template('errorConeccion.html')
+        return render_template("iniciar.html")
 
 @app.route('/registro')
 def registro():
     return render_template('registro.html')
-
-@app.route('/tareas')
-def tareas():
-    return render_template('tareas.html')
 
 @app.route('/recuperar')
 def recuperar():
@@ -111,32 +130,6 @@ def iniciar():
     if session.get('logueado'):
         return render_template('iniciar.html')
     return render_template('iniciar.html')
-
-@app.route('/validaLogin', methods=['GET','POST'])
-def validar():
-    if request.method == "POST":
-        correo = request.form.get("correo", '').strip()
-        password = request.form.get("password", '')
-        if not correo or not password:
-            flash('Por favor ingresa email y contraseña', 'error')
-            return render_template('iniciar.html')
-        
-        elif correo in USUARIOS_REGISTRADOS:
-            usuario = USUARIOS_REGISTRADOS[correo]
-            if usuario['password'] == password:
-                session['logueado'] = True
-                session['usuario'] = usuario['nombre']
-                session['usuario_correo'] = correo
-                flash(f'¡Bienvenido {usuario["nombre"]}!', 'success')
-                return redirect(url_for('index'))
-            else:
-                flash('Contraseña incorrecta', 'error')
-        else:
-            flash('Usuario no encontrado', 'error')
-        
-        return render_template('iniciar.html')
-    
-    return redirect(url_for('iniciar'))
 
 @app.route("/logout")
 def logout():

@@ -63,7 +63,7 @@ class GestorTareas:
                 #verificar el password tecleado por el usuario con la base de datos
                 #regresar los datos del usuario
                 #usuario['_id'] = str(usuario['_id'])
-            return usuario
+                return usuario
         except Exception as e:
             print(f"Error al obtener usuario: {e}")
             return None
