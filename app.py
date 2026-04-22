@@ -65,7 +65,7 @@ def validar():
 def registro():
     return render_template('registro.html')
 
-@app.route('/recuperarr')
+@app.route('/recuperarr', methods=['GET','POST']))
 def recuperarr():
     if request.method == "POST":
         correor = request.form.get("correor", '').strip()
