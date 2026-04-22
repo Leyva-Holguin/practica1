@@ -18,11 +18,11 @@
                             {% endfor %}
                         {% endif %}
                     {% endwith %}
-                    <form method="post" action="{{ url_for('registrar') }}">
+                    <form method="post" action="{{ url_for('recuperarr') }}">
                         <div class="mb-4">
                             <label class="form-label fw-semibold text-secondary"><i class="bi bi-envelope-fill me-1"></i>Correo electrónico</label>
                             <div class="input-group"> <span class="input-group-text bg-light border-end-0"><i class="bi bi-envelope text-secondary"></i></span>
-                                <input type="email" class="form-control bg-light border-start-0" id="correo" name="correo" placeholder="juan@ejemplo.com" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" value="{{ request.form.get('correo', '') }}">
+                                <input type="email" class="form-control bg-light border-start-0" id="correor" name="correor" placeholder="juan@ejemplo.com" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" value="{{ request.form.get('correor', '') }}">
                             </div>
                         </div>
                         <div class="d-grid mb-4">

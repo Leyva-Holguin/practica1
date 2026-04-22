@@ -65,6 +65,17 @@ def validar():
 def registro():
     return render_template('registro.html')
 
+@app.route('/recuperarr')
+def recuperarr():
+    if request.method == "POST":
+        correor = request.form.get("correor", '').strip()
+        if not correor:
+            flash('Por favor ingresa email', 'error')
+            return redirect(url_for('recuperar'))
+        else:
+            flash('Tu contraseña ha sido enviado a tu correo electronico', 'success')
+            return redirect(url_for('iniciar'))
+
 @app.route('/recuperar')
 def recuperar():
     return render_template('recuperar.html')
