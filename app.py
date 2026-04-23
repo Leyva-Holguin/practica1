@@ -22,6 +22,8 @@ USUARIOS_REGISTRADOS = {
 }
 app.config['SECRET_KEY'] = 'Ladrillos_que_ruedan_nueces_que_vuelan'
 
+gestor = Gestor_Tareas.GestorTareas()
+
 @app.route('/')
 def index():
     return render_template('iniciar.html')
@@ -34,38 +36,25 @@ def validar():
         if not correo or not password:
             flash('Por favor ingresa email y contraseña', 'error')
             return render_template('iniciar.html')
-        elif correo in USUARIOS_REGISTRADOS:
-            usuario = USUARIOS_REGISTRADOS[correo]
-            if usuario['password'] == password:
-                session['logueado'] = True
-                session['usuario'] = usuario['nombre']
-                session['usuario_correo'] = correo
-                flash(f'¡Bienvenido {usuario["nombre"]}!', 'success')
-                return redirect(url_for('index'))
-            else:
-                flash('Contraseña incorrecta', 'error')
+        usuario = gestor.obtener_usuario2(correo, password)
+        if usuario:
+            session['logueado'] = True
+            session['usuario'] = usuario['nombre']
+            session['usuario_correo'] = usuario['correo']
+            flash(f'¡Bienvenido {usuario["nombre"]}!', 'success')
+            return redirect(url_for('index'))
         else:
-            flash('Usuario no encontrado', 'error')
-        return render_template('iniciar.html')
+            flash('Usuario o contraseña incorrectos', 'error')
+            return render_template('iniciar.html')
     return redirect(url_for('iniciar'))
 
-#evento click del inicio de sesion
-#@app.route('/evento', methods=['GET','POST'])
-#def index():
-    gestor = Gestor_Tareas()
-    if gestor:
-        if gestor.obtener_usuario2("daniel@correo.com", "daniel"):
-            return render_template("iniciar.html")
-        else:
-            1
-    else:
-        return render_template("iniciar.html")
+
 
 @app.route('/registro')
 def registro():
     return render_template('registro.html')
 
-@app.route('/recuperarr', methods=['GET','POST']))
+@app.route('/recuperarr', methods=['GET','POST'])
 def recuperarr():
     if request.method == "POST":
         correor = request.form.get("correor", '').strip()
@@ -106,35 +95,21 @@ def add():
 @app.route('/registrar', methods=['GET', 'POST'])
 def registrar():
     if request.method == 'POST':
-        error = None
         nombre = request.form['nombre']
         apellido = request.form['apellido']
-        dia = request.form['dia']
-        mes = request.form['mes']
-        year = request.form['year']
         correo = request.form['correo']
         password = request.form['password']
         confirmPassword = request.form.get("confirmPassword")
-        edad = 2026 - int(year)
         if password != confirmPassword:
-            error = "Las contraseñas no coinciden"
-        elif correo in USUARIOS_REGISTRADOS:
-            error = "Este correo ya está registrado"
-        if error is not None:
-            flash(error, 'error')
+            flash("Las contraseñas no coinciden", 'error')
             return render_template('registro.html')
-        else:
-            USUARIOS_REGISTRADOS[correo] = {
-                'password': password,
-                'nombre': f"{nombre} {apellido}",
-                'dia': dia,
-                'mes': mes,
-                'year': year,
-                'correo': correo,
-                'edad': edad,
-            }
+        usuario_id = gestor.crear_usuario(f"{nombre} {apellido}", correo, password)
+        if usuario_id:
             flash(f"Registro exitoso: {nombre}. Ahora puedes iniciar sesión.", 'success')
             return redirect(url_for('iniciar'))
+        else:
+            flash("Este correo ya está registrado", 'error')
+            return render_template('registro.html')
 
 @app.route("/iniciar")
 def iniciar():

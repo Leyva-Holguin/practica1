@@ -16,7 +16,6 @@ class GestorTareas:
             self.db = self.cliente['gestor_tareas']
             self.tareas = self.db['tareas']
             self.usuarios = self.db['usuarios']
-            
             # Crear índices necesarios
             self._crear_indices()
             print("✅ Conectado a MongoDB")
@@ -26,24 +25,25 @@ class GestorTareas:
     
     def _crear_indices(self):
         """Crear índices para mejorar rendimiento"""
-        self.usuarios.create_index("email", unique=True)
+        self.usuarios.create_index("correo", unique=True)
         self.tareas.create_index([("usuario_id", 1), ("fecha_creacion", -1)])
         self.tareas.create_index("estado")
     
-    def crear_usuario(self, nombre: str, email: str) -> Optional[str]:
-        """Crear un nuevo usuario"""
+    def crear_usuario(self, nombre: str, correo: str, password: str) -> Optional[str]:
         try:
             resultado = self.usuarios.insert_one({
                 "nombre": nombre,
-                "email": email,
+                "correo": correo,
+                "password": password,
                 "fecha_registro": datetime.now(),
                 "activo": True
             })
             return str(resultado.inserted_id)
         except DuplicateKeyError:
-            print(f"❌ Error: El email {email} ya está registrado")
+            print(f"❌ Error: El correo {correo} ya está registrado")
             return None
-    
+
+
     def obtener_usuario(self, usuario_id: str) -> Optional[Dict]:
         """Obtener usuario por ID"""
         try:
@@ -54,16 +54,20 @@ class GestorTareas:
         except Exception as e:
             print(f"Error al obtener usuario: {e}")
             return None
-
-    #def obtener_usuario2(self, correo: str, passworsd: str) -> Optional[Dict]:
-        """Obtener usuario por ID"""
+        
+    def obtener_usuario2(self, correo: str, password: str) -> Optional[Dict]:
         try:
-            correo = self.usuarios.find_one({"correo": ObjectId(correo)})
-            if correo:
-                #verificar el password tecleado por el usuario con la base de datos
-                #regresar los datos del usuario
-                #usuario['_id'] = str(usuario['_id'])
-                return usuario
+            usuario = self.usuarios.find_one({"correo": correo})
+            if usuario:
+                if usuario["password"] == password:
+                    usuario["_id"] = str(usuario["_id"])
+                    return usuario
+                else:
+                    print("❌ Contraseña incorrecta")
+                    return None
+            else:
+                print("❌ Usuario no encontrado")
+                return None
         except Exception as e:
             print(f"Error al obtener usuario: {e}")
             return None
