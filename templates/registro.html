@@ -51,13 +51,13 @@
                         <div class="mb-4">
                             <label class="form-label fw-semibold text-secondary"><i class="bi bi-envelope-fill me-1"></i>Correo electrónico</label>
                             <div class="input-group"> <span class="input-group-text bg-light border-end-0"><i class="bi bi-envelope text-secondary"></i></span>
-                                <input type="email" class="form-control bg-light border-start-0" id="correo" name="correo" placeholder="juan@ejemplo.com" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" value="{{ request.form.get('correo', '') }}">
+                                <input type="email" class="form-control bg-light border-start-0" id="correo" name="correo" placeholder="correo@correo.com" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" value="{{ request.form.get('correo', '') }}">
                             </div>
                         </div>
                         <div class="mb-4">
                             <label class="form-label fw-semibold text-secondary"><i class="bi bi-lock-fill me-1"></i>Contraseña</label>
                             <div class="input-group"><span class="input-group-text bg-light border-end-0"><i class="bi bi-key text-secondary"></i></span>
-                                <input type="password" class="form-control bg-light border-start-0" id="password" name="password" required placeholder="Crea una contraseña segura" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Debe contener al menos un número, una mayúscula y mínimo 8 caracteres">
+                                <input type="password" class="form-control bg-light border-start-0" id="password" name="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Debe contener al menos un número, una mayúscula y mínimo 8 caracteres">
                             </div>
                             <small class="text-muted">Mínimo 8 caracteres, una mayúscula y un número</small>
                         </div>

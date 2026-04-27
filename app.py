@@ -48,8 +48,6 @@ def validar():
             return render_template('iniciar.html')
     return redirect(url_for('iniciar'))
 
-
-
 @app.route('/registro')
 def registro():
     return render_template('registro.html')
@@ -68,25 +66,6 @@ def recuperarr():
 @app.route('/recuperar')
 def recuperar():
     return render_template('recuperar.html')
-
-#@app.route('/validaCorreo', methods=['GET','POST'])
-#def C():
-    if request.method == "POST":
-        correo = request.form.get("correo", '').strip()
-        if not correo:
-            flash('Por favor ingresa el email', 'error')
-            return render_template('recuperar.html')
-        elif correo in USUARIOS_REGISTRADOS:
-            usuario = USUARIOS_REGISTRADOS[correo]
-            if usuario['correo'] == correo:
-                session['logueado'] = True
-                session['usuario_correo'] = correo
-                flash(f'¡Bienvenido {usuario["nombre"]}!', 'success')
-                return redirect(url_for('recuperar'))
-        else:
-            flash('Usuario no encontrado', 'error')
-        return render_template('iniciar.html')
-    return redirect(url_for('iniciar'))
 
 @app.route('/add')
 def add():
@@ -149,11 +128,9 @@ def eliminar_tarea(tarea_id):
 def ejemplo_uso():
     # Inicializar gestor
     gestor = Gestor_Tareas()
-    
     # Crear usuario
     usuario_id = gestor.crear_usuario("Ana García", "ana@email.com")
     print(f"Usuario creado con ID: {usuario_id}")
-    
     if usuario_id:
         # Crear tareas
         tarea1 = gestor.crear_tarea(
@@ -163,7 +140,6 @@ def ejemplo_uso():
             datetime.now() + timedelta(days=3)
         )
         print(f"Tarea creada: {tarea1}")
-        
         tarea2 = gestor.crear_tarea(
             usuario_id,
             "Hacer ejercicio",
