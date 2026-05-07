@@ -23,8 +23,7 @@
                                 <span class="input-group-text bg-light border-end-0">
                                     <i class="bi bi-check2-square text-secondary"></i>
                                 </span>
-                                <input type="text" class="form-control bg-light border-start-0" 
-                                       name="titulo" placeholder="Ej: Terminar el proyecto" required>
+                                <input type="text" class="form-control bg-light border-start-0" name="titulo" placeholder="Ej: Terminar el proyecto" required>
                             </div>
                         </div>
                         <div class="d-grid">
@@ -63,8 +62,8 @@
                                     <tr class="align-middle">
                                         <td class="ps-4 fw-semibold">{{ tarea.titulo }}</td>
                                         <td>
-                                            <span class="badge {% if tarea.estado == 'pendiente' %}bg-warning{% elif tarea.estado == 'en_progreso' %}bg-info{% else %}bg-success{% endif %} px-3 py-2 rounded-pill">
-                                                <i class="bi bi-{% if tarea.estado == 'pendiente' %}hourglass-split{% elif tarea.estado == 'en_progreso' %}arrow-repeat{% else %}check-lg{% endif %} me-1"></i>
+                                            <span class="badge {% if tarea.estado == 'cancelada' %}bg-danger{% elif tarea.estado == 'pendiente' %}bg-warning{% elif tarea.estado == 'en_progreso' %}bg-info{% else %}bg-success{% endif %} px-3 py-2 rounded-pill">
+                                                <i class="bi bi-{% if tarea.estado == 'pendiente' %}hourglass-split{% elif tarea.estado == 'cancelada' %}arrow-repeat{% elif tarea.estado == 'en_progreso' %}arrow-repeat{% else %}check-lg{% endif %} me-1"></i>
                                                 {{ tarea.estado|replace('_', ' ')|title }}
                                             </span>
                                         </td>
@@ -98,12 +97,12 @@
                                                                 <option value="pendiente" {% if tarea.estado == 'pendiente' %}selected{% endif %}>Pendiente</option>
                                                                 <option value="en_progreso" {% if tarea.estado == 'en_progreso' %}selected{% endif %}>En progreso</option>
                                                                 <option value="completada" {% if tarea.estado == 'completada' %}selected{% endif %}>Completada</option>
+                                                                <option value="cancelada" {% if tarea.estado == 'cancelada' %}selected{% endif %}>Cancelada</option>
                                                             </select>
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="form-label fw-semibold">Fecha de finalización</label>
                                                             <input type="date" class="form-control" name="fecha_fin" value="{{ tarea.fecha_limite.strftime('%Y-%m-%d') if tarea.fecha_limite else '' }}">
-                                                            <small class="text-muted">Deja en blanco si no tiene fecha límite</small>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer border-0 pt-0 pb-4 pe-4">
