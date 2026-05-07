@@ -1,34 +1,18 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session
-import requests
-from pymongo import MongoClient
-from pymongo.errors import DuplicateKeyError, ConnectionFailure
+from Gestor_Tareas import GestorTareas 
 from bson.objectid import ObjectId
 from datetime import datetime, timedelta
-from typing import Optional, List, Dict
-import os 
-import Gestor_Tareas
 
-API_KEY = "f464ff8b2ff24730ab822bdd2da02bbd"
-API_BASE = "https://api.spoonacular.com"
-
-app = Flask(__name__) 
-USUARIOS_REGISTRADOS = {
-    'daniel@correo.com':{
-        'password': "daniel",
-        'nombre': "daniel",
-        'correo': "daniel@correo.com",
-        'edad': 16,
-    }
-}
+app = Flask(__name__)
 app.config['SECRET_KEY'] = 'Ladrillos_que_ruedan_nueces_que_vuelan'
 
-gestor = Gestor_Tareas.GestorTareas()
+gestor = GestorTareas()
 
 @app.route('/')
 def index():
     return render_template('iniciar.html')
 
-@app.route('/validaLogin', methods=['GET','POST'])
+@app.route('/validaLogin', methods=['GET', 'POST'])
 def validar():
     if request.method == "POST":
         correo = request.form.get("correo", '').strip()
@@ -41,8 +25,9 @@ def validar():
             session['logueado'] = True
             session['usuario'] = usuario['nombre']
             session['usuario_correo'] = usuario['correo']
+            session['usuario_id'] = usuario['_id']
             flash(f'¡Bienvenido {usuario["nombre"]}!', 'success')
-            return redirect(url_for('index'))
+            return redirect(url_for('add')) 
         else:
             flash('Usuario o contraseña incorrectos', 'error')
             return render_template('iniciar.html')
@@ -52,7 +37,7 @@ def validar():
 def registro():
     return render_template('registro.html')
 
-@app.route('/recuperarr', methods=['GET','POST'])
+@app.route('/recuperarr', methods=['GET', 'POST'])
 def recuperarr():
     if request.method == "POST":
         correor = request.form.get("correor", '').strip()
@@ -60,8 +45,9 @@ def recuperarr():
             flash('Por favor ingresa email', 'error')
             return redirect(url_for('recuperar'))
         else:
-            flash('Tu contraseña ha sido enviado a tu correo electronico', 'success')
+            flash('Tu contraseña ha sido enviada a tu correo electrónico', 'success')
             return redirect(url_for('iniciar'))
+    return redirect(url_for('recuperar'))
 
 @app.route('/recuperar')
 def recuperar():
@@ -69,7 +55,49 @@ def recuperar():
 
 @app.route('/add')
 def add():
-    return render_template('add.html')
+    if not session.get('logueado'):
+        return redirect(url_for('iniciar'))
+    usuario_id = session.get('usuario_id')
+    tareas = gestor.obtener_tareas_usuario(usuario_id)
+    return render_template('add.html', tareas=tareas)
+
+@app.route('/agregar_tarea', methods=['POST'])
+def agregar_tarea():
+    if not session.get('logueado'):
+        return redirect(url_for('iniciar'))  
+    titulo = request.form.get('titulo', '').strip()   
+    usuario_id = session.get('usuario_id')
+    tarea_id = gestor.crear_tarea(usuario_id, titulo)  
+    return redirect(url_for('add'))
+
+@app.route('/editar_tarea/<tarea_id>', methods=['POST'])
+def editar_tarea(tarea_id):
+    titulo = request.form.get('titulo', '').strip()
+    estado = request.form.get('estado')
+    fecha_fin = request.form.get('fecha_fin')
+    if titulo:
+        gestor.tareas.update_one(
+            {"_id": ObjectId(tarea_id)},
+            {"$set": {"titulo": titulo}}
+        )
+    if estado:
+        gestor.actualizar_estado_tarea(tarea_id, estado)
+    if fecha_fin:
+        gestor.tareas.update_one(
+            {"_id": ObjectId(tarea_id)},
+            {"$set": {"fecha_limite": datetime.strptime(fecha_fin, '%Y-%m-%d')}}
+        )
+    return redirect(url_for('add'))
+
+@app.route('/eliminar_tarea/<tarea_id>')
+def eliminar_tarea(tarea_id):
+    if not session.get('logueado'):
+        return redirect(url_for('iniciar'))
+    if gestor.eliminar_tarea(tarea_id):
+        flash('Tarea eliminada correctamente', 'success')
+    else:
+        flash('Error al eliminar la tarea', 'error')
+    return redirect(url_for('add'))
 
 @app.route('/registrar', methods=['GET', 'POST'])
 def registrar():
@@ -89,11 +117,12 @@ def registrar():
         else:
             flash("Este correo ya está registrado", 'error')
             return render_template('registro.html')
+    return render_template('registro.html')
 
 @app.route("/iniciar")
 def iniciar():
     if session.get('logueado'):
-        return render_template('iniciar.html')
+        return redirect(url_for('add'))
     return render_template('iniciar.html')
 
 @app.route("/logout")
@@ -101,77 +130,6 @@ def logout():
     session.clear()
     flash('Has cerrado sesión correctamente', 'info')
     return redirect(url_for('iniciar'))
-
-@app.route('/agregar_tarea', methods=['POST'])
-def agregar_tarea():
-    titulo = request.form['titulo']
-    # Guardar en MongoDB proximamante
-    flash('Tarea añadida correctamente', 'success')
-    return redirect(url_for('tareas'))
-
-@app.route('/editar_tarea/<tarea_id>', methods=['POST'])
-def editar_tarea(tarea_id):
-    titulo = request.form['titulo']
-    estado = request.form['estado']
-    fecha_fin = request.form.get('fecha_fin')
-    # Actualizar en MongoDB proximamente
-    flash('Tarea actualizada correctamente', 'success')
-    return redirect(url_for('tareas'))
-
-@app.route('/eliminar_tarea/<tarea_id>')
-def eliminar_tarea(tarea_id):
-    # Eliminar de MongoDB proximamante
-    flash('Tarea eliminada correctamente', 'success')
-    return redirect(url_for('tareas'))
-
-# Ejemplo de uso
-def ejemplo_uso():
-    # Inicializar gestor
-    gestor = Gestor_Tareas()
-    # Crear usuario
-    usuario_id = gestor.crear_usuario("Ana García", "ana@email.com")
-    print(f"Usuario creado con ID: {usuario_id}")
-    if usuario_id:
-        # Crear tareas
-        tarea1 = gestor.crear_tarea(
-            usuario_id, 
-            "Aprender MongoDB", 
-            "Completar tutorial de PyMongo",
-            datetime.now() + timedelta(days=3)
-        )
-        print(f"Tarea creada: {tarea1}")
-        tarea2 = gestor.crear_tarea(
-            usuario_id,
-            "Hacer ejercicio",
-            "Ir al gimnasio 3 veces esta semana"
-        )
-        
-        # Agregar etiqueta
-        gestor.agregar_etiqueta(tarea1, "programación")
-        gestor.agregar_etiqueta(tarea1, "estudio")
-        
-        # Listar tareas
-        tareas = gestor.obtener_tareas_usuario(usuario_id)
-        print(f"\nTareas de {usuario_id}:")
-        for t in tareas:
-            print(f"  - {t['titulo']} [{t['estado']}]")
-        
-        # Actualizar estado
-        gestor.actualizar_estado_tarea(tarea1, "en_progreso")
-        
-        # Estadísticas
-        stats = gestor.estadisticas_usuario(usuario_id)
-        print(f"\nEstadísticas: {stats}")
-        
-        # Tareas urgentes
-        urgentes = gestor.tareas_urgentes(72)
-        print(f"\nTareas urgentes próximos 3 días: {len(urgentes)}")
-    
-    # Cerrar conexión
-    gestor.cerrar_conexion()
-
-#if __name__ == "__main__":
-#    ejemplo_uso()
 
 if __name__ == '__main__':
     app.run(debug=True)
